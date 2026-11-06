@@ -358,6 +358,17 @@ class ContactRepositoryImpl @Inject constructor(
 
 Hasta aquí, casi todas las clases dependen de **interfaces** (`ContactLocalDataSource`, `ContactRemoteDataSource`, `ContactRepository`) y no de implementaciones concretas. Eso es intencional (Inversión de Dependencias), pero en algún lugar hay que decirle al sistema **qué implementación real usar** cuando algo pide, por ejemplo, un `ContactRepository`. Ese "algún lugar" son los módulos de Hilt en `di`: cada uno agrupa las dependencias de un área (base de datos, red, repositorios) y Hilt arma automáticamente el grafo de objetos, evitando que cada clase tenga que crear sus propias dependencias a mano (`new`/constructores manuales por todos lados).
 
+### ¿Qué hace `@Module`?
+
+`@Module` es la anotación que le dice a Hilt/Dagger: **"esta clase (u `object`/`interface`) es una receta de cómo construir ciertas dependencias"**. Por sí sola no hace nada; siempre va acompañada de:
+
+- **`@InstallIn(SingletonComponent::class)`**: le dice a Hilt **en qué "contenedor" vive** lo que provee este módulo. `SingletonComponent` significa "vive mientras viva la aplicación completa" — por eso las instancias que salen de aquí pueden marcarse `@Singleton` (una sola, compartida por toda la app). Hilt tiene otros componentes para ámbitos más acotados (por Activity, por ViewModel, etc.), pero en este proyecto todo lo que se inyecta es a nivel de toda la app.
+- **Dentro del módulo, cada función resuelve "cómo construir un tipo":**
+  - `@Provides` (usado en `DatabaseModule` y `NetworkModule`, que son `object`): para cuando la dependencia **no se puede construir con un simple constructor inyectable** — por ejemplo, `AppDatabase` se arma llamando a `Room.databaseBuilder(...)`, que no es un `@Inject constructor`. Aquí escribes a mano la lógica de construcción, una sola vez, y Hilt reutiliza el resultado cada vez que algo pide ese tipo.
+  - `@Binds` (usado en `RepositoryModule`, que es una `interface` abstracta): para cuando solo hay que decir "cuando pidan la interfaz `ContactRepository`, entrega una instancia de `ContactRepositoryImpl`" — una asociación directa interfaz→implementación, sin lógica de construcción. Es más liviano que `@Provides` porque Dagger no tiene que ejecutar código, solo "conectar" el tipo pedido con el tipo concreto (que a su vez ya sabe construirse solo gracias a su `@Inject constructor`).
+
+**En resumen:** sin `@Module` (+ `@InstallIn`), Hilt no tendría ningún lugar donde buscar "cómo se construye un `AppDatabase`, un `OkHttpClient` o un `ContactRepository`" — y la inyección en los `ViewModel` (`@Inject constructor`) fallaría en tiempo de compilación porque faltaría una pieza del grafo de dependencias.
+
 ### A. Módulo de Base de Datos (`DatabaseModule.kt`)
 **Qué resuelve:** cómo se construye la única instancia de `AppDatabase` (`Room.databaseBuilder(...)`, marcada `@Singleton` para que sea una sola en toda la app) y cómo se obtienen el `ContactDao` y el `ContactLocalDataSource` a partir de ella. Sin este módulo, Hilt no sabría cómo crear un `AppDatabase` cuando alguna clase lo pide en su constructor.
 ```kotlin
@@ -499,6 +510,30 @@ data class ContactUiState(
 **Por qué existe y cómo interactúa:** el ViewModel es el puente entre la UI y el `ContactRepository`. En `init`/`observeContacts()` se suscribe al `Flow` del repositorio y, cada vez que Room emite una nueva lista, actualiza `_uiState` — eso es lo que hace que la lista en pantalla se refresque sola sin que nadie llame a un "refrescar" manual. `addContact()` y `deleteContact()` delegan en el repositorio y sobreviven a rotaciones de pantalla gracias a `viewModelScope`. `@HiltViewModel` le dice a Hilt que puede inyectar el `ContactRepository` automáticamente al construirlo.
 
 **Por qué `MutableStateFlow`/`StateFlow` separados:** `_uiState` (mutable, privado) es lo único que el ViewModel puede modificar; `uiState` (de solo lectura, público) es lo único que la `Screen` puede observar. Así se evita que la UI "tramposeé" y cambie el estado sin pasar por la lógica del ViewModel.
+
+**Línea por línea: `observeContacts()`**
+
+```kotlin
+private fun observeContacts() {
+    viewModelScope.launch {
+        _uiState.update { it.copy(isLoading = true) }
+        repository.getContacts()
+            .catch { e ->
+                _uiState.update { it.copy(isLoading = false, errorMessage = e.message) }
+            }
+            .collect { list ->
+                _uiState.update { it.copy(contacts = list, isLoading = false) }
+            }
+    }
+}
+```
+
+- **`viewModelScope.launch { ... }`**: `collect` es una función `suspend` — no puede llamarse "a secas" en Kotlin, necesita correr dentro de una corrutina. `viewModelScope` es un `CoroutineScope` que Android liga automáticamente al ciclo de vida del ViewModel: cuando el ViewModel se destruye (por ejemplo, la pantalla se cierra para siempre), esta corrutina se cancela sola y deja de escuchar el `Flow`, sin fugas de memoria.
+- **`_uiState.update { it.copy(isLoading = true) }`** (antes de suscribirse): deja la UI en estado "cargando" apenas arranca el ViewModel, antes incluso de que Room entregue el primer valor. `it.copy(...)` crea una copia del `ContactUiState` actual cambiando solo `isLoading`, sin tocar los demás campos (`contacts`, `nameInput`, etc.) — así nunca se pisa información que no corresponde cambiar en ese punto.
+- **`repository.getContacts()`**: obtiene el `Flow<List<Contact>>` del repositorio. Hasta aquí **todavía no pasa nada**: un `Flow` es "frío", no emite valores hasta que alguien lo colecciona (ver más abajo). Esta línea solo arma la "cañería", no abre la llave.
+- **`.catch { e -> ... }`**: es el manejo de errores del `Flow`. Si en cualquier punto de la cadena (Room, el mapper, etc.) se lanza una excepción, en vez de **crashear la app**, `catch` la intercepta y permite reaccionar: aquí se apaga el loading y se guarda `e.message` en `errorMessage` para que la UI pueda mostrarlo. Importante: `catch` solo atrapa errores que ocurren **antes** de él en la cadena (en el `Flow` del repositorio), nunca los que ocurran dentro del propio `collect`.
+- **`.collect { list -> ... }`**: es el punto donde el `Flow` finalmente "se abre": llamar a `collect` es lo que le dice a Room "empieza a emitirme valores". A partir de aquí, esta lambda se ejecuta **cada vez** que la tabla `contacts` cambia (no una sola vez): la primera vez con la lista inicial, y después con cada lista nueva tras un `INSERT`/`DELETE`. Por eso `collect` nunca "retorna": la corrutina se queda suspendida aquí, escuchando, mientras el `viewModelScope` siga vivo.
+- **`_uiState.update { it.copy(contacts = list, isLoading = false) }`**: cada vez que llega una lista nueva, reemplaza `contacts` en el estado y apaga el loading. Como `uiState` es un `StateFlow` que la `Screen` observa con `collectAsStateWithLifecycle()`, este `update` es lo único que hace falta para que la lista en pantalla se redibuje — nadie llama a la UI directamente, la UI reacciona sola al cambio de estado.
 
 ```kotlin
 package com.rojas.consumodatos.ui.contact
