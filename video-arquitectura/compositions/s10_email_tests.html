@@ -1,0 +1,127 @@
+<!doctype html>
+<template>
+  <style>
+
+:root {
+  --ground: #0D1117;
+  --panel: #161B22;
+  --line: #30363D;
+  --ink: #F0F6FC;
+  --dim: #8B949E;
+  --green: #3DDC84;
+  --blue: #38BDF8;
+  --paper: #F6F1E7;
+  --accent: var(--green);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+#root {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: Inter, Roboto, sans-serif;
+}
+.clip { position: absolute; }
+.clip .in { width: 100%; height: 100%; }
+.chapter {
+  position: absolute; left: 1460px; top: 142px; width: 260px;
+  text-align: right; font-size: 24px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--blue);
+}
+.headline {
+  position: absolute; left: 200px; top: 130px; width: 1150px; height: 82px;
+  font-size: 64px; font-weight: 800; letter-spacing: -.02em; line-height: 1.05;
+}
+.sub {
+  position: absolute; left: 200px; top: 222px; width: 1200px; height: 48px;
+  font-size: 30px; color: var(--dim);
+}
+.panel {
+  position: absolute; left: 200px; top: 300px; width: 900px; height: 600px;
+  background: var(--panel); border: 2px solid var(--line); border-radius: 14px;
+  overflow: hidden;
+}
+.panel-bar {
+  position: absolute; left: 0; top: 0; width: 100%; height: 52px;
+  background: #21262D; border-bottom: 2px solid var(--line);
+  padding: 0 24px; display: flex; align-items: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 22px; color: var(--dim);
+}
+.panel-bar .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--green); margin-right: 14px; }
+.code {
+  position: absolute; left: 26px; height: 38px; width: 840px;
+  font-family: 'JetBrains Mono', monospace; font-size: 28px; line-height: 38px;
+  color: #E6EDF3; white-space: pre;
+}
+.code.hl { background: rgba(61,220,132,.12); border-left: 4px solid var(--green); padding-left: 10px; width: 826px; }
+.kw { color: #CF8E6D; }
+.str { color: #6A8759; }
+.fn { color: #56A8F5; }
+.cm { color: #7A7E85; }
+.ac { color: var(--green); }
+.bl { color: var(--blue); }
+.visual { position: absolute; left: 1160px; top: 292px; width: 560px; height: 608px; }
+.caption {
+  position: absolute; left: 200px; top: 920px; width: 1520px; height: 54px;
+  font-size: 30px; font-weight: 700; color: var(--ink);
+}
+.rule { height: 4px; background: var(--blue); border-radius: 2px; }
+.ficha-wrap { position: absolute; inset: 0; }
+.ficha-paper {
+  position: absolute; left: 0; top: 0; width: 420px; min-height: 250px;
+  background: var(--paper); color: #101418; border-radius: 10px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.5); transform: rotate(-2deg);
+  padding: 18px 22px; font-family: 'JetBrains Mono', monospace;
+}
+.ficha-tab {
+  display: inline-block; background: #101418; color: var(--green);
+  font-size: 22px; font-weight: 700; padding: 5px 12px; border-radius: 6px;
+  margin-bottom: 14px;
+}
+.ficha-row { font-size: 22px; line-height: 32px; white-space: pre; }
+.ficha-row b { color: #1B5E38; font-weight: 700; }
+.node {
+  position: absolute; background: var(--panel); border: 2px solid var(--blue);
+  border-radius: 12px; padding: 14px 20px; font-size: 26px; font-weight: 700;
+}
+.node small { display: block; font-size: 20px; font-weight: 400; color: var(--dim); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+.node.green { border-color: var(--green); color: var(--green); }
+.tagline { font-family: 'JetBrains Mono', monospace; font-size: 26px; color: var(--dim); }
+.bigword { font-size: 76px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+.check { color: var(--green); font-family: 'JetBrains Mono', monospace; font-size: 27px; line-height: 40px; }
+
+
+  </style>
+  <div id="root" data-composition-id="s10_email_tests" data-width="1920" data-height="1080">
+    <div class="chapter">Capítulo 9</div>
+    <div class="headline">El segundo viaje</div>
+    <div class="sub">Enviar correo y probar las capas</div>
+    
+    <div class="panel"><div id="s10-code-bar" class="clip " data-start="0.40" data-duration="34.60" style="" ><div id="s10-code-bar-in" class="in"><span class="dot"></span>SendEmailApiService.kt · SendEmailRepositoryImpl.kt · tests</div></div><div id="s10-code-l0" class="clip code" data-start="2.00" data-duration="33.00" style="left:26px;top:70px;" ><div id="s10-code-l0-in" class="in"><span class="kw">@POST</span>(Endpoints.SEND_EMAIL)</div></div><div id="s10-code-l1" class="clip code" data-start="4.00" data-duration="31.00" style="left:26px;top:108px;" ><div id="s10-code-l1-in" class="in"><span class="kw">suspend fun</span> <span class="fn">sendEmail</span>(<span class="kw">@Body</span> request: SendEmailRequestDto)</div></div><div id="s10-code-l2" class="clip code hl" data-start="6.00" data-duration="29.00" style="left:26px;top:146px;" ><div id="s10-code-l2-in" class="in"><span class="kw">suspend fun</span> <span class="fn">sendEmail</span>(to, subject, body) = <span class="fn">runCatching</span> {</div></div><div id="s10-code-l3" class="clip code" data-start="11.00" data-duration="24.00" style="left:26px;top:184px;" ><div id="s10-code-l3-in" class="in">  SendEmailRequestDto(to,</div></div><div id="s10-code-l4" class="clip code" data-start="13.00" data-duration="22.00" style="left:26px;top:222px;" ><div id="s10-code-l4-in" class="in">    emailSubject = subject, messageBody = body)</div></div><div id="s10-code-l5" class="clip code" data-start="16.00" data-duration="19.00" style="left:26px;top:260px;" ><div id="s10-code-l5-in" class="in"><span class="cm">// JSON: to · subject · text</span></div></div><div id="s10-code-l6" class="clip code hl" data-start="21.00" data-duration="14.00" style="left:26px;top:298px;" ><div id="s10-code-l6-in" class="in"><span class="check">13 @Test en el repo</span></div></div><div id="s10-code-l7" class="clip code" data-start="26.00" data-duration="9.00" style="left:26px;top:336px;" ><div id="s10-code-l7-in" class="in"><span class="check">BUILD SUCCESSFUL</span> <span class="cm">(guía de tests)</span></div></div><div id="s10-code-l8" class="clip code" data-start="30.00" data-duration="5.00" style="left:26px;top:374px;" ><div id="s10-code-l8-in" class="in">6 fakes + MainDispatcherRule</div></div></div>
+    <div id="s10-arrow" class="clip " data-start="8.00" data-duration="27.00" style="left:1170px;top:640px;width:520px;height:4px;" ><div id="s10-arrow-in" class="in"><div class="rule" style="width:520px"></div></div></div>
+    <div id="s10-post" class="clip " data-start="12.00" data-duration="23.00" style="left:1170px;top:680px;width:440px;" ><div id="s10-post-in" class="in"><div class="node green" style="width:400px">POST send-email<br><small>ApiKey en el header</small></div></div></div>
+    <div id="s10-seal" class="clip " data-start="24.00" data-duration="11.00" style="left:1180px;top:800px;width:400px;" ><div id="s10-seal-in" class="in"><div class="node green" style="width:360px;font-size:36px">✓ 13 / 0</div></div></div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s10-code-l0-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 2.00);
+      tl.fromTo("#s10-code-l1-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 4.00);
+      tl.fromTo("#s10-code-l2-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 6.00);
+      tl.fromTo("#s10-code-l3-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 11.00);
+      tl.fromTo("#s10-code-l4-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 13.00);
+      tl.fromTo("#s10-code-l5-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 16.00);
+      tl.fromTo("#s10-code-l6-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 21.00);
+      tl.fromTo("#s10-code-l7-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 26.00);
+      tl.fromTo("#s10-code-l8-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 30.00);
+      tl.fromTo("#s10-code-bar-in", {opacity:0}, {opacity:1,duration:0.3,ease:"power2.out"}, 0.40);
+      tl.fromTo("#s10-arrow-in", {scaleX:0}, {scaleX:1,duration:0.4,ease:"power2.out",transformOrigin:"left center"}, 8.00);
+      tl.fromTo("#s10-post-in", {opacity:0,scale:0.9}, {opacity:1,scale:1,duration:0.4,ease:"back.out(1.4)"}, 12.00);
+      tl.fromTo("#s10-seal-in", {opacity:0,scale:1.6}, {opacity:1,scale:1,duration:0.45,ease:"back.out(1.4)"}, 24.00);
+    window.__timelines["s10_email_tests"] = tl;
+    tl.seek(0);
+  </script>
+</template>

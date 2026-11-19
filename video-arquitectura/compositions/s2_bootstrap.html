@@ -1,0 +1,126 @@
+<!doctype html>
+<template>
+  <style>
+
+:root {
+  --ground: #0D1117;
+  --panel: #161B22;
+  --line: #30363D;
+  --ink: #F0F6FC;
+  --dim: #8B949E;
+  --green: #3DDC84;
+  --blue: #38BDF8;
+  --paper: #F6F1E7;
+  --accent: var(--green);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+#root {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: Inter, Roboto, sans-serif;
+}
+.clip { position: absolute; }
+.clip .in { width: 100%; height: 100%; }
+.chapter {
+  position: absolute; left: 1460px; top: 142px; width: 260px;
+  text-align: right; font-size: 24px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--blue);
+}
+.headline {
+  position: absolute; left: 200px; top: 130px; width: 1150px; height: 82px;
+  font-size: 64px; font-weight: 800; letter-spacing: -.02em; line-height: 1.05;
+}
+.sub {
+  position: absolute; left: 200px; top: 222px; width: 1200px; height: 48px;
+  font-size: 30px; color: var(--dim);
+}
+.panel {
+  position: absolute; left: 200px; top: 300px; width: 900px; height: 600px;
+  background: var(--panel); border: 2px solid var(--line); border-radius: 14px;
+  overflow: hidden;
+}
+.panel-bar {
+  position: absolute; left: 0; top: 0; width: 100%; height: 52px;
+  background: #21262D; border-bottom: 2px solid var(--line);
+  padding: 0 24px; display: flex; align-items: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 22px; color: var(--dim);
+}
+.panel-bar .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--green); margin-right: 14px; }
+.code {
+  position: absolute; left: 26px; height: 38px; width: 840px;
+  font-family: 'JetBrains Mono', monospace; font-size: 28px; line-height: 38px;
+  color: #E6EDF3; white-space: pre;
+}
+.code.hl { background: rgba(61,220,132,.12); border-left: 4px solid var(--green); padding-left: 10px; width: 826px; }
+.kw { color: #CF8E6D; }
+.str { color: #6A8759; }
+.fn { color: #56A8F5; }
+.cm { color: #7A7E85; }
+.ac { color: var(--green); }
+.bl { color: var(--blue); }
+.visual { position: absolute; left: 1160px; top: 292px; width: 560px; height: 608px; }
+.caption {
+  position: absolute; left: 200px; top: 920px; width: 1520px; height: 54px;
+  font-size: 30px; font-weight: 700; color: var(--ink);
+}
+.rule { height: 4px; background: var(--blue); border-radius: 2px; }
+.ficha-wrap { position: absolute; inset: 0; }
+.ficha-paper {
+  position: absolute; left: 0; top: 0; width: 420px; min-height: 250px;
+  background: var(--paper); color: #101418; border-radius: 10px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.5); transform: rotate(-2deg);
+  padding: 18px 22px; font-family: 'JetBrains Mono', monospace;
+}
+.ficha-tab {
+  display: inline-block; background: #101418; color: var(--green);
+  font-size: 22px; font-weight: 700; padding: 5px 12px; border-radius: 6px;
+  margin-bottom: 14px;
+}
+.ficha-row { font-size: 22px; line-height: 32px; white-space: pre; }
+.ficha-row b { color: #1B5E38; font-weight: 700; }
+.node {
+  position: absolute; background: var(--panel); border: 2px solid var(--blue);
+  border-radius: 12px; padding: 14px 20px; font-size: 26px; font-weight: 700;
+}
+.node small { display: block; font-size: 20px; font-weight: 400; color: var(--dim); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+.node.green { border-color: var(--green); color: var(--green); }
+.tagline { font-family: 'JetBrains Mono', monospace; font-size: 26px; color: var(--dim); }
+.bigword { font-size: 76px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+.check { color: var(--green); font-family: 'JetBrains Mono', monospace; font-size: 27px; line-height: 40px; }
+
+
+  </style>
+  <div id="root" data-composition-id="s2_bootstrap" data-width="1920" data-height="1080">
+    <div class="chapter">Capítulo 1</div>
+    <div class="headline">Hilt construye el grafo</div>
+    <div class="sub">Una app, tres módulos, doce proveedores</div>
+    
+    <div class="panel"><div id="s2-code-bar" class="clip " data-start="0.40" data-duration="49.60" style="" ><div id="s2-code-bar-in" class="in"><span class="dot"></span>ConsumoDatosApp.kt · MainActivity.kt · di/</div></div><div id="s2-code-l0" class="clip code" data-start="2.00" data-duration="48.00" style="left:26px;top:70px;" ><div id="s2-code-l0-in" class="in"><span class="kw">@HiltAndroidApp</span> <span class="kw">class</span> ConsumoDatosApp : Application()</div></div><div id="s2-code-l1" class="clip code" data-start="7.00" data-duration="43.00" style="left:26px;top:108px;" ><div id="s2-code-l1-in" class="in"><span class="kw">@AndroidEntryPoint</span> <span class="kw">class</span> MainActivity</div></div><div id="s2-code-l2" class="clip code" data-start="12.00" data-duration="38.00" style="left:26px;top:146px;" ><div id="s2-code-l2-in" class="in">ContactScreen(viewModel = <span class="fn">hiltViewModel</span>())</div></div><div id="s2-code-l3" class="clip code hl" data-start="18.00" data-duration="32.00" style="left:26px;top:184px;" ><div id="s2-code-l3-in" class="in"><span class="ac">DatabaseModule</span>  → provideAppDatabase / Dao / LocalDataSource</div></div><div id="s2-code-l4" class="clip code hl" data-start="25.00" data-duration="25.00" style="left:26px;top:222px;" ><div id="s2-code-l4-in" class="in"><span class="ac">NetworkModule</span>   → OkHttp / Retrofit / ApiServices / Monitor</div></div><div id="s2-code-l5" class="clip code hl" data-start="32.00" data-duration="18.00" style="left:26px;top:260px;" ><div id="s2-code-l5-in" class="in"><span class="ac">RepositoryModule</span> → @Binds NoticeRepository / SendEmailRepository</div></div></div>
+    <div id="s2-count" class="clip " data-start="39.00" data-duration="11.00" style="left:1180px;top:340px;width:520px;height:220px;" ><div id="s2-count-in" class="in"><div class="bigword" style="font-size:60px"><span class="ac">12</span> proveedores<br><span class="bl">3</span> módulos · <span class="ac">1</span> grafo</div></div></div>
+    <div id="s2-flow" class="clip " data-start="43.00" data-duration="7.00" style="left:1180px;top:610px;width:520px;height:4px;" ><div id="s2-flow-in" class="in"><div class="rule" style="width:520px"></div></div></div>
+    <div id="s2-ficha" class="clip " data-start="44.00" data-duration="5.00" style="left:1220px;top:660px;width:440px;height:280px;" ><div id="s2-ficha-in" class="in"><div class="ficha-wrap"><div class="ficha-paper"><span class="ficha-tab">Notice</span><div class="ficha-row"><b>id</b> notice_1</div></div></div></div></div>
+    <div id="s2-out" class="clip " data-start="47.00" data-duration="3.00" style="left:1220px;top:660px;width:440px;height:280px;" ><div id="s2-out-in" class="in"><div class="ficha-wrap"><div class="ficha-paper"><span class="ficha-tab">Notice</span></div></div></div></div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s2-code-l0-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 2.00);
+      tl.fromTo("#s2-code-l1-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 7.00);
+      tl.fromTo("#s2-code-l2-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 12.00);
+      tl.fromTo("#s2-code-l3-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 18.00);
+      tl.fromTo("#s2-code-l4-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 25.00);
+      tl.fromTo("#s2-code-l5-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 32.00);
+      tl.fromTo("#s2-code-bar-in", {opacity:0}, {opacity:1,duration:0.3,ease:"power2.out"}, 0.40);
+      tl.fromTo("#s2-count-in", {opacity:0,scale:0.9}, {opacity:1,scale:1,duration:0.4,ease:"back.out(1.4)"}, 39.00);
+      tl.fromTo("#s2-flow-in", {scaleX:0}, {scaleX:1,duration:0.4,ease:"power2.out",transformOrigin:"left center"}, 43.00);
+      tl.fromTo("#s2-ficha-in", {opacity:0,x:90}, {opacity:1,x:0,duration:0.5,ease:"power3.out"}, 44.00);
+      tl.fromTo("#s2-out-in", {opacity:1,x:0}, {opacity:0,x:320,duration:0.5,ease:"power3.in"}, 47.00);
+    window.__timelines["s2_bootstrap"] = tl;
+    tl.seek(0);
+  </script>
+</template>

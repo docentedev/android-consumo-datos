@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es" data-resolution="landscape"
+  data-composition-variables='[{"id":"accent","type":"color","label":"Color de acento","default":"#3DDC84"},{"id":"noticeText","type":"string","label":"Texto del aviso","default":"Texto de aviso"},{"id":"claim","type":"string","label":"Claim final","default":"La UI lee Room. La red sólo lo actualiza."}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>El aviso que cruza las capas — Arquitectura ConsumoDatos</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      :root { --ground: #0D1117; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="540"
+         data-width="1920" data-height="1080">
+      <div id="s1_hook" data-composition-id="s1_hook" data-composition-src="compositions/s1_hook.html" data-start="0" data-duration="20" data-track-index="0" data-track-kind="graphics"></div>
+      <div id="s2_bootstrap" data-composition-id="s2_bootstrap" data-composition-src="compositions/s2_bootstrap.html" data-start="20" data-duration="50" data-track-index="0" data-track-kind="graphics"></div>
+      <div id="s3_domain" data-composition-id="s3_domain" data-composition-src="compositions/s3_domain.html" data-start="70" data-duration="40" data-track-index="0" data-track-kind="graphics"></div>
+      <div id="s4_network" data-composition-id="s4_network" data-composition-src="compositions/s4_network.html" data-start="110" data-duration="80" data-track-index="0" data-track-kind="graphics"></div>
+      <div id="s5_mapping" data-composition-id="s5_mapping" data-composition-src="compositions/s5_mapping.html" data-start="190" data-duration="60" data-track-index="0" data-track-kind="graphics"></div>
+      <div id="s6_repository" data-composition-id="s6_repository" data-composition-src="compositions/s6_repository.html" data-start="250" data-duration="70" data-track-index="0" data-track-kind="graphics"></div>
+      <div id="s7_room" data-composition-id="s7_room" data-composition-src="compositions/s7_room.html" data-start="320" data-duration="60" data-track-index="0" data-track-kind="graphics"></div>
+      <div id="s8_viewmodel_ui" data-composition-id="s8_viewmodel_ui" data-composition-src="compositions/s8_viewmodel_ui.html" data-start="380" data-duration="60" data-track-index="0" data-track-kind="graphics"></div>
+      <div id="s9_offline" data-composition-id="s9_offline" data-composition-src="compositions/s9_offline.html" data-start="440" data-duration="50" data-track-index="0" data-track-kind="graphics"></div>
+      <div id="s10_email_tests" data-composition-id="s10_email_tests" data-composition-src="compositions/s10_email_tests.html" data-start="490" data-duration="35" data-track-index="0" data-track-kind="graphics"></div>
+      <div id="s11_claim" data-composition-id="s11_claim" data-composition-src="compositions/s11_claim.html" data-start="525" data-duration="15" data-track-index="0" data-track-kind="graphics"></div>
+      <audio id="voice-s1_hook" class="clip" src="assets/voice/s1_hook.wav" data-start="0" data-duration="18.73" data-volume="1" data-track-index="1"></audio>
+      <audio id="voice-s2_bootstrap" class="clip" src="assets/voice/s2_bootstrap.wav" data-start="20" data-duration="49.74" data-volume="1" data-track-index="1"></audio>
+      <audio id="voice-s3_domain" class="clip" src="assets/voice/s3_domain.wav" data-start="70" data-duration="38.73" data-volume="1" data-track-index="1"></audio>
+      <audio id="voice-s4_network" class="clip" src="assets/voice/s4_network.wav" data-start="110" data-duration="76.97" data-volume="1" data-track-index="1"></audio>
+      <audio id="voice-s5_mapping" class="clip" src="assets/voice/s5_mapping.wav" data-start="190" data-duration="59.47" data-volume="1" data-track-index="1"></audio>
+      <audio id="voice-s6_repository" class="clip" src="assets/voice/s6_repository.wav" data-start="250" data-duration="67.66" data-volume="1" data-track-index="1"></audio>
+      <audio id="voice-s7_room" class="clip" src="assets/voice/s7_room.wav" data-start="320" data-duration="59.15" data-volume="1" data-track-index="1"></audio>
+      <audio id="voice-s8_viewmodel_ui" class="clip" src="assets/voice/s8_viewmodel_ui.wav" data-start="380" data-duration="59.21" data-volume="1" data-track-index="1"></audio>
+      <audio id="voice-s9_offline" class="clip" src="assets/voice/s9_offline.wav" data-start="440" data-duration="49.70" data-volume="1" data-track-index="1"></audio>
+      <audio id="voice-s10_email_tests" class="clip" src="assets/voice/s10_email_tests.wav" data-start="490" data-duration="33.81" data-volume="1" data-track-index="1"></audio>
+      <audio id="voice-s11_claim" class="clip" src="assets/voice/s11_claim.wav" data-start="525" data-duration="14.34" data-volume="1" data-track-index="1"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

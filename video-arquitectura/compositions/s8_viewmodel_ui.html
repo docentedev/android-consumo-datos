@@ -1,0 +1,128 @@
+<!doctype html>
+<template>
+  <style>
+
+:root {
+  --ground: #0D1117;
+  --panel: #161B22;
+  --line: #30363D;
+  --ink: #F0F6FC;
+  --dim: #8B949E;
+  --green: #3DDC84;
+  --blue: #38BDF8;
+  --paper: #F6F1E7;
+  --accent: var(--green);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+#root {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: Inter, Roboto, sans-serif;
+}
+.clip { position: absolute; }
+.clip .in { width: 100%; height: 100%; }
+.chapter {
+  position: absolute; left: 1460px; top: 142px; width: 260px;
+  text-align: right; font-size: 24px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--blue);
+}
+.headline {
+  position: absolute; left: 200px; top: 130px; width: 1150px; height: 82px;
+  font-size: 64px; font-weight: 800; letter-spacing: -.02em; line-height: 1.05;
+}
+.sub {
+  position: absolute; left: 200px; top: 222px; width: 1200px; height: 48px;
+  font-size: 30px; color: var(--dim);
+}
+.panel {
+  position: absolute; left: 200px; top: 300px; width: 900px; height: 600px;
+  background: var(--panel); border: 2px solid var(--line); border-radius: 14px;
+  overflow: hidden;
+}
+.panel-bar {
+  position: absolute; left: 0; top: 0; width: 100%; height: 52px;
+  background: #21262D; border-bottom: 2px solid var(--line);
+  padding: 0 24px; display: flex; align-items: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 22px; color: var(--dim);
+}
+.panel-bar .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--green); margin-right: 14px; }
+.code {
+  position: absolute; left: 26px; height: 38px; width: 840px;
+  font-family: 'JetBrains Mono', monospace; font-size: 28px; line-height: 38px;
+  color: #E6EDF3; white-space: pre;
+}
+.code.hl { background: rgba(61,220,132,.12); border-left: 4px solid var(--green); padding-left: 10px; width: 826px; }
+.kw { color: #CF8E6D; }
+.str { color: #6A8759; }
+.fn { color: #56A8F5; }
+.cm { color: #7A7E85; }
+.ac { color: var(--green); }
+.bl { color: var(--blue); }
+.visual { position: absolute; left: 1160px; top: 292px; width: 560px; height: 608px; }
+.caption {
+  position: absolute; left: 200px; top: 920px; width: 1520px; height: 54px;
+  font-size: 30px; font-weight: 700; color: var(--ink);
+}
+.rule { height: 4px; background: var(--blue); border-radius: 2px; }
+.ficha-wrap { position: absolute; inset: 0; }
+.ficha-paper {
+  position: absolute; left: 0; top: 0; width: 420px; min-height: 250px;
+  background: var(--paper); color: #101418; border-radius: 10px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.5); transform: rotate(-2deg);
+  padding: 18px 22px; font-family: 'JetBrains Mono', monospace;
+}
+.ficha-tab {
+  display: inline-block; background: #101418; color: var(--green);
+  font-size: 22px; font-weight: 700; padding: 5px 12px; border-radius: 6px;
+  margin-bottom: 14px;
+}
+.ficha-row { font-size: 22px; line-height: 32px; white-space: pre; }
+.ficha-row b { color: #1B5E38; font-weight: 700; }
+.node {
+  position: absolute; background: var(--panel); border: 2px solid var(--blue);
+  border-radius: 12px; padding: 14px 20px; font-size: 26px; font-weight: 700;
+}
+.node small { display: block; font-size: 20px; font-weight: 400; color: var(--dim); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+.node.green { border-color: var(--green); color: var(--green); }
+.tagline { font-family: 'JetBrains Mono', monospace; font-size: 26px; color: var(--dim); }
+.bigword { font-size: 76px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+.check { color: var(--green); font-family: 'JetBrains Mono', monospace; font-size: 27px; line-height: 40px; }
+
+
+  </style>
+  <div id="root" data-composition-id="s8_viewmodel_ui" data-width="1920" data-height="1080">
+    <div class="chapter">Capítulo 7</div>
+    <div class="headline">StateFlow → Compose</div>
+    <div class="sub">Un estado inmutable, una lista</div>
+    
+    <div class="panel"><div id="s8-code-bar" class="clip " data-start="0.40" data-duration="59.60" style="" ><div id="s8-code-bar-in" class="in"><span class="dot"></span>NoticeViewModel.kt · NoticeScreen.kt</div></div><div id="s8-code-l0" class="clip code" data-start="2.00" data-duration="58.00" style="left:26px;top:70px;" ><div id="s8-code-l0-in" class="in"><span class="kw">private val</span> _uiState = MutableStateFlow(NoticeUiState())</div></div><div id="s8-code-l1" class="clip code hl" data-start="4.00" data-duration="56.00" style="left:26px;top:108px;" ><div id="s8-code-l1-in" class="in"><span class="kw">val</span> uiState: StateFlow&lt;NoticeUiState&gt;</div></div><div id="s8-code-l2" class="clip code" data-start="6.00" data-duration="54.00" style="left:26px;top:146px;" ><div id="s8-code-l2-in" class="in">  = _uiState.<span class="fn">asStateFlow</span>()</div></div><div id="s8-code-l3" class="clip code" data-start="8.00" data-duration="52.00" style="left:26px;top:184px;" ><div id="s8-code-l3-in" class="in">repository.observeNotices().<span class="fn">collect</span> { list →</div></div><div id="s8-code-l4" class="clip code" data-start="10.00" data-duration="50.00" style="left:26px;top:222px;" ><div id="s8-code-l4-in" class="in">  _uiState.<span class="fn">update</span> { it.copy(notices = list, isLoading = <span class="kw">false</span>) } }</div></div><div id="s8-code-l5" class="clip code" data-start="22.00" data-duration="38.00" style="left:26px;top:260px;" ><div id="s8-code-l5-in" class="in"><span class="kw">val</span> uiState <span class="kw">by</span> viewModel.uiState</div></div><div id="s8-code-l6" class="clip code hl" data-start="24.00" data-duration="36.00" style="left:26px;top:298px;" ><div id="s8-code-l6-in" class="in">  .<span class="fn">collectAsStateWithLifecycle</span>()</div></div><div id="s8-code-l7" class="clip code" data-start="28.00" data-duration="32.00" style="left:26px;top:336px;" ><div id="s8-code-l7-in" class="in">LazyColumn { <span class="fn">items</span>(uiState.notices, key = { it.id }) { … } }</div></div></div>
+    <div id="s8-phone" class="clip " data-start="16.00" data-duration="44.00" style="left:1170px;top:290px;width:380px;height:560px;" ><div id="s8-phone-in" class="in"><div style="position:absolute;left:1290px;top:300px;width:380px;height:560px;background:#0B1017;border:8px solid #30363D;border-radius:36px;overflow:hidden"><div style="height:34px;background:#21262D"></div><div style="padding:20px;font-family:Inter,sans-serif"><div style="font-size:24px;font-weight:800;margin-bottom:14px">Avisos</div><div style="background:#161B22;border:2px solid #30363D;border-radius:12px;padding:16px"><div style="font-size:22px">Texto de aviso</div><div style="font-size:18px;color:#8B949E">2025-01-01T10:00:00Z</div></div></div></div></div></div>
+    <div id="s8-state" class="clip " data-start="5.00" data-duration="55.00" style="left:1190px;top:900px;width:340px;" ><div id="s8-state-in" class="in"><div class="node green" style="width:300px">UiState → StateFlow</div></div></div>
+    <div id="s8-ficha" class="clip " data-start="42.00" data-duration="10.00" style="left:1300px;top:480px;width:440px;height:280px;" ><div id="s8-ficha-in" class="in"><div class="ficha-wrap"><div class="ficha-paper"><span class="ficha-tab">Notice</span><div class="ficha-row"><b>text</b> Texto de aviso</div></div></div></div></div>
+    <div id="s8-out" class="clip " data-start="56.00" data-duration="4.00" style="left:1300px;top:480px;width:440px;height:280px;" ><div id="s8-out-in" class="in"><div class="ficha-wrap"><div class="ficha-paper"><span class="ficha-tab">Notice</span></div></div></div></div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s8-code-l0-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 2.00);
+      tl.fromTo("#s8-code-l1-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 4.00);
+      tl.fromTo("#s8-code-l2-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 6.00);
+      tl.fromTo("#s8-code-l3-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 8.00);
+      tl.fromTo("#s8-code-l4-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 10.00);
+      tl.fromTo("#s8-code-l5-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 22.00);
+      tl.fromTo("#s8-code-l6-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 24.00);
+      tl.fromTo("#s8-code-l7-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 28.00);
+      tl.fromTo("#s8-code-bar-in", {opacity:0}, {opacity:1,duration:0.3,ease:"power2.out"}, 0.40);
+      tl.fromTo("#s8-phone-in", {opacity:0,scale:0.9}, {opacity:1,scale:1,duration:0.4,ease:"back.out(1.4)"}, 16.00);
+      tl.fromTo("#s8-state-in", {opacity:0,x:90}, {opacity:1,x:0,duration:0.5,ease:"power3.out"}, 5.00);
+      tl.fromTo("#s8-ficha-in", {opacity:0,y:-80,scale:0.9}, {opacity:1,y:0,scale:1,duration:0.55,ease:"expo.out"}, 42.00);
+      tl.fromTo("#s8-out-in", {opacity:1,x:0}, {opacity:0,x:320,duration:0.5,ease:"power3.in"}, 56.00);
+    window.__timelines["s8_viewmodel_ui"] = tl;
+    tl.seek(0);
+  </script>
+</template>

@@ -1,0 +1,84 @@
+{
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 0.9,
+  "scenes": [
+    {
+      "id": "s1_hook",
+      "start": 0,
+      "duration": 20,
+      "text": "¿Qué lee la pantalla cuando no hay red? Esta es la arquitectura de ConsumoDatos. Un aviso real del repositorio cruza HTTPS, DTO, Room, Flow y la interfaz. La ficha viaja de capa en capa. Fíjate en el texto: Texto de aviso. Lo verás una y otra vez. Trece pruebas automáticas respaldan el recorrido.",
+      "speed": 0.9
+    },
+    {
+      "id": "s2_bootstrap",
+      "start": 20,
+      "duration": 50,
+      "text": "Capítulo uno. Hilt construye el grafo antes de que arranque la pantalla. Una aplicación, tres módulos, doce proveedores. HiltAndroidApp marca la aplicación; AndroidEntryPoint abre la actividad; hiltViewModel entrega el ViewModel. DatabaseModule aporta la base de datos, el DAO y la fuente local. NetworkModule aporta OkHttp, Retrofit, los servicios y el monitor de red. RepositoryModule une las interfaces con sus implementaciones con @Binds. Todo llega cableado, sin factories escritas a mano. Cada módulo se instala una sola vez y Hilt resuelve el orden. Cuando la actividad pide el ViewModel, el grafo ya sabe qué repositorio usar; y el repositorio ya sabe qué fuente local y qué servicio remoto inyectar. El grafo es el mismo en la app y en los tests: por eso las pruebas sustituyen la red por falsos sin tocar el ViewModel. La ficha Notice aparece aquí por primera vez: es el objeto que seguimos.",
+      "speed": 1.122
+    },
+    {
+      "id": "s3_domain",
+      "start": 70,
+      "duration": 40,
+      "text": "Capítulo dos. El dominio no conoce Android. Notice es una clase de datos pura: identificador, usuario, correo, texto y fecha. No lleva Entity, ni SerializedName, ni Context. NoticeRepository define tres operaciones: obtener avisos, observar avisos y refrescarlos. SendEmailRepository define una sola: enviar correo con destinatario, asunto y cuerpo. Result permite devolver un fallo sin lanzar excepciones. Flow permite observar cambios sin preguntar. El dominio no sabe si hay red: sólo pide datos. Esas dos decisiones atraviesan toda la aplicación y permiten cambiar de fuente sin reescribir la pantalla.",
+      "speed": 0.882
+    },
+    {
+      "id": "s4_network",
+      "start": 110,
+      "duration": 80,
+      "text": "Capítulo tres. Del HTTPS al DTO. Config guarda la URL de producción y una clave ApiKey que aquí mostramos oculta. Endpoints separa las dos rutas: notices y send-email. OkHttp añade dos interceptores: uno inyecta autorización y contenido JSON; otro registra el cuerpo de la petición. El encabezado de autorización se construye una vez en el cliente, no en cada pantalla, así que ninguna pantalla tiene que acordarse de la clave. El interceptor de registro sirve para depurar cuando algo falla. Retrofit usa esa base URL y convierte con Gson. Base URL y endpoint están separados: cambiar de servidor no obliga a tocar la interfaz. La interfaz declara GET notices y devuelve NoticeResponseDto, con items, total, página, límite y páginas. La paginación llega, pero todavía no se usa. Gson convierte el JSON directamente al DTO, sin pasar por el dominio. El DTO es un contrato de transporte: nombres como user_id y created_at. No es el modelo de la app, y nunca sube a la interfaz. Cuando termina este tramo, la ficha sigue siendo un DTO, con campos que pueden venir nulos.",
+      "speed": 0.805
+    },
+    {
+      "id": "s5_mapping",
+      "start": 190,
+      "duration": 60,
+      "text": "Capítulo cuatro. Tres nombres para el mismo dato. NoticeDto viene del JSON con user_id y created_at, y SerializedName traduce el nombre. NoticeEntity es la fila de Room, con su clave primaria y sus campos. Notice es el modelo limpio que consume la interfaz. Las funciones de extensión toEntity y toDomain hacen el mapeo en los dos sentidos: los campos nulos del JSON se vuelven cadena vacía para que la base de datos no reviente. Dentro del repositorio, la respuesta se convierte a entidades antes de guardarse; y las entidades se convierten a dominio antes de publicarse. Tres contratos, un solo significado: el texto del aviso. Si mezclas los tres, acabas mostrando un DTO en la pantalla y acoplando la interfaz a Retrofit. La frontera se llama igual en los tres sitios, pero no es el mismo tipo.",
+      "speed": 0.785
+    },
+    {
+      "id": "s6_repository",
+      "start": 250,
+      "duration": 70,
+      "text": "Capítulo cinco. El repositorio es la fuente única de verdad. Hay dos caminos, pero un solo sitio donde leer. El camino de lectura observa Room: la fuente local devuelve las entidades, se mapean a dominio y llegan como Flow a la interfaz. El camino de escritura llama a la red, obtiene el resultado y guarda las entidades en la base de datos. La interfaz no llama nunca a Retrofit: pide datos al repositorio. Por eso la red sólo actualiza; no decide qué se muestra. Result envuelve el éxito o el error sin lanzar excepciones. La prueba que comprueba Texto de aviso demuestra que el valor sobrevive al viaje. La fuente única no es la nube, es la tabla local. El Flow se re-emite cada vez que Room cambia, así que no hace falta pedir permiso a la pantalla para actualizarla. Y como el repositorio expone interfaces, el ViewModel ni sabe si detrás hay Room o un falso. En los tests se sustituye la implementación y punto. La interfaz lee Room; la red sólo lo actualiza.",
+      "speed": 0.8
+    },
+    {
+      "id": "s7_room",
+      "start": 320,
+      "duration": 60,
+      "text": "Capítulo seis. Room: una tabla, un Flow. NoticeEntity tiene Entity sobre la tabla notices, versión uno, y una clave primaria. El DAO consulta con SELECT ordenado por fecha y devuelve Flow de entidades. La inserción usa REPLACE: si llega el mismo identificador, se sustituye la fila. Al insertar, el Flow vuelve a emitir: por eso la pantalla se actualiza sola. En la derecha, la tabla con una fila: notice_1, Texto de aviso, primero de enero de 2025. Tres ondas, tres re-emisiones. Una entidad, un DAO, dos métodos. No hay migraciones complejas: es la versión uno. El campo de fecha admite nulo para que un JSON incompleto no rompa la inserción. El Flow del DAO alimenta al repositorio, y el repositorio alimenta a la interfaz. Ningún bucle, ningún polling: Room avisa cuando hay cambio. Esa es la razón de que el modo sin conexión funcione sin código especial en la pantalla.",
+      "speed": 0.822
+    },
+    {
+      "id": "s8_viewmodel_ui",
+      "start": 380,
+      "duration": 60,
+      "text": "Capítulo siete. StateFlow y Compose. El ViewModel guarda un MutableStateFlow privado y expone un StateFlow inmutable: la pantalla puede leer, pero no escribir. Al observar el repositorio, actualiza el estado con la lista y el indicador de carga, usando copy para conservar el resto. La pantalla recoge ese estado con collectAsStateWithLifecycle, que se detiene cuando la actividad no está visible. Después dibuja un LazyColumn con clave por identificador, para que cada fila se recicle correctamente y un cambio en un aviso no recomponga toda la lista. NoticeViewModel, NoticeScreen y NoticeUiState están en esta capa: no hay un presentador oculto ni un enlace directo a la vista. Dentro del teléfono aparece la ficha: Texto de aviso con su fecha. El estado es inmutable; la lista, una sola. La pantalla no decide de dónde vienen los datos: sólo pinta lo que el ViewModel publica. Por eso girar el dispositivo no pierde el aviso.",
+      "speed": 0.854
+    },
+    {
+      "id": "s9_offline",
+      "start": 440,
+      "duration": 50,
+      "text": "Capítulo ocho. Se cae la red. LiveNetworkMonitor escucha onAvailable y onLost y envía un booleano por un canal. El monitor se registra al crear el ViewModel y se cancela al destruirlo, así que no queda suscrito cuando la pantalla se cierra. El ViewModel recoge ese valor y lo copia en el estado de la interfaz. Cuando no hay red, refreshNotices no corre; observeNotices sí corre, porque observa la fuente local. El aviso Modo sin conexión aparece, pero no bloquea: la ficha sigue en pantalla y la lista sigue interactiva, porque viene de Room y no de la respuesta HTTP. Apagar el wifi no borra los avisos. Las tres ondas lo repiten: la fuente local sigue emitiendo. Si vuelve la conexión, refreshNotices se ejecuta de nuevo y Room publica los cambios. La interfaz ni siquiera necesita saber que la red se ha ido; sólo ve un estado con menos señales. Este es el momento que justifica toda la arquitectura.",
+      "speed": 1.094
+    },
+    {
+      "id": "s10_email_tests",
+      "start": 490,
+      "duration": 35,
+      "text": "Capítulo nueve. El segundo viaje. Enviar correo usa otro POST: SendEmailRequestDto con destinatario, asunto y cuerpo, y la misma clave en la cabecera. El repositorio envuelve la llamada en runCatching para devolver Result en lugar de excepciones. Y están las pruebas: trece @Test, cero fallos, seis falsos y MainDispatcherRule. BUILD SUCCESSFUL sale de la guía de tests del repositorio. Cada capa se comprueba por separado, sin servidor real y sin dispositivo. La arquitectura se valida capa por capa.",
+      "speed": 0.841
+    },
+    {
+      "id": "s11_claim",
+      "start": 525,
+      "duration": 15,
+      "text": "Y ésa es la idea que cruza todo el recorrido: la interfaz lee Room, la red sólo lo actualiza. Hilt cablea las piezas, el dominio no conoce Android, el repositorio decide la fuente y Room mantiene la ficha viva incluso sin conexión. ConsumoDatos, visto desde el aviso que cruza las capas.",
+      "speed": 1.244
+    }
+  ]
+}

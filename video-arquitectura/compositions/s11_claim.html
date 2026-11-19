@@ -1,0 +1,130 @@
+<!doctype html>
+<template>
+  <style>
+
+:root {
+  --ground: #0D1117;
+  --panel: #161B22;
+  --line: #30363D;
+  --ink: #F0F6FC;
+  --dim: #8B949E;
+  --green: #3DDC84;
+  --blue: #38BDF8;
+  --paper: #F6F1E7;
+  --accent: var(--green);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+#root {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: Inter, Roboto, sans-serif;
+}
+.clip { position: absolute; }
+.clip .in { width: 100%; height: 100%; }
+.chapter {
+  position: absolute; left: 1460px; top: 142px; width: 260px;
+  text-align: right; font-size: 24px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--blue);
+}
+.headline {
+  position: absolute; left: 200px; top: 130px; width: 1150px; height: 82px;
+  font-size: 64px; font-weight: 800; letter-spacing: -.02em; line-height: 1.05;
+}
+.sub {
+  position: absolute; left: 200px; top: 222px; width: 1200px; height: 48px;
+  font-size: 30px; color: var(--dim);
+}
+.panel {
+  position: absolute; left: 200px; top: 300px; width: 900px; height: 600px;
+  background: var(--panel); border: 2px solid var(--line); border-radius: 14px;
+  overflow: hidden;
+}
+.panel-bar {
+  position: absolute; left: 0; top: 0; width: 100%; height: 52px;
+  background: #21262D; border-bottom: 2px solid var(--line);
+  padding: 0 24px; display: flex; align-items: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 22px; color: var(--dim);
+}
+.panel-bar .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--green); margin-right: 14px; }
+.code {
+  position: absolute; left: 26px; height: 38px; width: 840px;
+  font-family: 'JetBrains Mono', monospace; font-size: 28px; line-height: 38px;
+  color: #E6EDF3; white-space: pre;
+}
+.code.hl { background: rgba(61,220,132,.12); border-left: 4px solid var(--green); padding-left: 10px; width: 826px; }
+.kw { color: #CF8E6D; }
+.str { color: #6A8759; }
+.fn { color: #56A8F5; }
+.cm { color: #7A7E85; }
+.ac { color: var(--green); }
+.bl { color: var(--blue); }
+.visual { position: absolute; left: 1160px; top: 292px; width: 560px; height: 608px; }
+.caption {
+  position: absolute; left: 200px; top: 920px; width: 1520px; height: 54px;
+  font-size: 30px; font-weight: 700; color: var(--ink);
+}
+.rule { height: 4px; background: var(--blue); border-radius: 2px; }
+.ficha-wrap { position: absolute; inset: 0; }
+.ficha-paper {
+  position: absolute; left: 0; top: 0; width: 420px; min-height: 250px;
+  background: var(--paper); color: #101418; border-radius: 10px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.5); transform: rotate(-2deg);
+  padding: 18px 22px; font-family: 'JetBrains Mono', monospace;
+}
+.ficha-tab {
+  display: inline-block; background: #101418; color: var(--green);
+  font-size: 22px; font-weight: 700; padding: 5px 12px; border-radius: 6px;
+  margin-bottom: 14px;
+}
+.ficha-row { font-size: 22px; line-height: 32px; white-space: pre; }
+.ficha-row b { color: #1B5E38; font-weight: 700; }
+.node {
+  position: absolute; background: var(--panel); border: 2px solid var(--blue);
+  border-radius: 12px; padding: 14px 20px; font-size: 26px; font-weight: 700;
+}
+.node small { display: block; font-size: 20px; font-weight: 400; color: var(--dim); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+.node.green { border-color: var(--green); color: var(--green); }
+.tagline { font-family: 'JetBrains Mono', monospace; font-size: 26px; color: var(--dim); }
+.bigword { font-size: 76px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+.check { color: var(--green); font-family: 'JetBrains Mono', monospace; font-size: 27px; line-height: 40px; }
+
+
+  </style>
+  <div id="root" data-composition-id="s11_claim" data-width="1920" data-height="1080">
+    <div class="chapter">Cierre</div>
+    <div class="headline">La UI lee Room.</div>
+    <div class="sub">La red sólo lo actualiza</div>
+    
+    <div id="s11-n0" class="clip " data-start="0.40" data-duration="14.60" style="left:200px;top:330px;width:170px;" ><div id="s11-n0-in" class="in"><div class="node " style="font-size:24px;padding:10px 14px">REST</div></div></div>
+    <div id="s11-n1" class="clip " data-start="0.54" data-duration="14.46" style="left:390px;top:330px;width:170px;" ><div id="s11-n1-in" class="in"><div class="node " style="font-size:24px;padding:10px 14px">OkHttp</div></div></div>
+    <div id="s11-n2" class="clip " data-start="0.68" data-duration="14.32" style="left:580px;top:330px;width:170px;" ><div id="s11-n2-in" class="in"><div class="node " style="font-size:24px;padding:10px 14px">Retrofit</div></div></div>
+    <div id="s11-n3" class="clip " data-start="0.82" data-duration="14.18" style="left:770px;top:330px;width:170px;" ><div id="s11-n3-in" class="in"><div class="node " style="font-size:24px;padding:10px 14px">Repo</div></div></div>
+    <div id="s11-n4" class="clip " data-start="0.96" data-duration="14.04" style="left:960px;top:330px;width:170px;" ><div id="s11-n4-in" class="in"><div class="node green" style="font-size:24px;padding:10px 14px">Room</div></div></div>
+    <div id="s11-n5" class="clip " data-start="1.10" data-duration="13.90" style="left:1150px;top:330px;width:170px;" ><div id="s11-n5-in" class="in"><div class="node green" style="font-size:24px;padding:10px 14px">Flow</div></div></div>
+    <div id="s11-n6" class="clip " data-start="1.24" data-duration="13.76" style="left:1340px;top:330px;width:170px;" ><div id="s11-n6-in" class="in"><div class="node " style="font-size:24px;padding:10px 14px">VM</div></div></div>
+    <div id="s11-n7" class="clip " data-start="1.38" data-duration="13.62" style="left:1530px;top:330px;width:170px;" ><div id="s11-n7-in" class="in"><div class="node " style="font-size:24px;padding:10px 14px">UI</div></div></div>
+    <div id="s11-monitor" class="clip " data-start="1.80" data-duration="13.20" style="left:700px;top:490px;width:300px;" ><div id="s11-monitor-in" class="in"><div class="node" style="font-size:22px">NetworkMonitor</div></div></div>
+    <div id="s11-claim" class="clip " data-start="2.40" data-duration="12.60" style="left:200px;top:620px;width:1520px;height:180px;" ><div id="s11-claim-in" class="in"><div class="bigword" style="font-size:66px">La UI lee <span class="ac">Room</span>.<br>La red sólo lo actualiza.</div></div></div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s11-n0-in", {opacity:0,scale:0.9}, {opacity:1,scale:1,duration:0.4,ease:"back.out(1.4)"}, 0.40);
+      tl.fromTo("#s11-n1-in", {opacity:0,scale:0.9}, {opacity:1,scale:1,duration:0.4,ease:"back.out(1.4)"}, 0.54);
+      tl.fromTo("#s11-n2-in", {opacity:0,scale:0.9}, {opacity:1,scale:1,duration:0.4,ease:"back.out(1.4)"}, 0.68);
+      tl.fromTo("#s11-n3-in", {opacity:0,scale:0.9}, {opacity:1,scale:1,duration:0.4,ease:"back.out(1.4)"}, 0.82);
+      tl.fromTo("#s11-n4-in", {opacity:0,scale:0.9}, {opacity:1,scale:1,duration:0.4,ease:"back.out(1.4)"}, 0.96);
+      tl.fromTo("#s11-n5-in", {opacity:0,scale:0.9}, {opacity:1,scale:1,duration:0.4,ease:"back.out(1.4)"}, 1.10);
+      tl.fromTo("#s11-n6-in", {opacity:0,scale:0.9}, {opacity:1,scale:1,duration:0.4,ease:"back.out(1.4)"}, 1.24);
+      tl.fromTo("#s11-n7-in", {opacity:0,scale:0.9}, {opacity:1,scale:1,duration:0.4,ease:"back.out(1.4)"}, 1.38);
+      tl.fromTo("#s11-monitor-in", {opacity:0,x:90}, {opacity:1,x:0,duration:0.5,ease:"power3.out"}, 1.80);
+      tl.fromTo("#s11-claim-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 2.40);
+    window.__timelines["s11_claim"] = tl;
+    tl.seek(0);
+  </script>
+</template>

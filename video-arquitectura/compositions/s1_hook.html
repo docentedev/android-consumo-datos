@@ -1,0 +1,122 @@
+<!doctype html>
+<template>
+  <style>
+
+:root {
+  --ground: #0D1117;
+  --panel: #161B22;
+  --line: #30363D;
+  --ink: #F0F6FC;
+  --dim: #8B949E;
+  --green: #3DDC84;
+  --blue: #38BDF8;
+  --paper: #F6F1E7;
+  --accent: var(--green);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+#root {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: Inter, Roboto, sans-serif;
+}
+.clip { position: absolute; }
+.clip .in { width: 100%; height: 100%; }
+.chapter {
+  position: absolute; left: 1460px; top: 142px; width: 260px;
+  text-align: right; font-size: 24px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--blue);
+}
+.headline {
+  position: absolute; left: 200px; top: 130px; width: 1150px; height: 82px;
+  font-size: 64px; font-weight: 800; letter-spacing: -.02em; line-height: 1.05;
+}
+.sub {
+  position: absolute; left: 200px; top: 222px; width: 1200px; height: 48px;
+  font-size: 30px; color: var(--dim);
+}
+.panel {
+  position: absolute; left: 200px; top: 300px; width: 900px; height: 600px;
+  background: var(--panel); border: 2px solid var(--line); border-radius: 14px;
+  overflow: hidden;
+}
+.panel-bar {
+  position: absolute; left: 0; top: 0; width: 100%; height: 52px;
+  background: #21262D; border-bottom: 2px solid var(--line);
+  padding: 0 24px; display: flex; align-items: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 22px; color: var(--dim);
+}
+.panel-bar .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--green); margin-right: 14px; }
+.code {
+  position: absolute; left: 26px; height: 38px; width: 840px;
+  font-family: 'JetBrains Mono', monospace; font-size: 28px; line-height: 38px;
+  color: #E6EDF3; white-space: pre;
+}
+.code.hl { background: rgba(61,220,132,.12); border-left: 4px solid var(--green); padding-left: 10px; width: 826px; }
+.kw { color: #CF8E6D; }
+.str { color: #6A8759; }
+.fn { color: #56A8F5; }
+.cm { color: #7A7E85; }
+.ac { color: var(--green); }
+.bl { color: var(--blue); }
+.visual { position: absolute; left: 1160px; top: 292px; width: 560px; height: 608px; }
+.caption {
+  position: absolute; left: 200px; top: 920px; width: 1520px; height: 54px;
+  font-size: 30px; font-weight: 700; color: var(--ink);
+}
+.rule { height: 4px; background: var(--blue); border-radius: 2px; }
+.ficha-wrap { position: absolute; inset: 0; }
+.ficha-paper {
+  position: absolute; left: 0; top: 0; width: 420px; min-height: 250px;
+  background: var(--paper); color: #101418; border-radius: 10px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.5); transform: rotate(-2deg);
+  padding: 18px 22px; font-family: 'JetBrains Mono', monospace;
+}
+.ficha-tab {
+  display: inline-block; background: #101418; color: var(--green);
+  font-size: 22px; font-weight: 700; padding: 5px 12px; border-radius: 6px;
+  margin-bottom: 14px;
+}
+.ficha-row { font-size: 22px; line-height: 32px; white-space: pre; }
+.ficha-row b { color: #1B5E38; font-weight: 700; }
+.node {
+  position: absolute; background: var(--panel); border: 2px solid var(--blue);
+  border-radius: 12px; padding: 14px 20px; font-size: 26px; font-weight: 700;
+}
+.node small { display: block; font-size: 20px; font-weight: 400; color: var(--dim); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+.node.green { border-color: var(--green); color: var(--green); }
+.tagline { font-family: 'JetBrains Mono', monospace; font-size: 26px; color: var(--dim); }
+.bigword { font-size: 76px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+.check { color: var(--green); font-family: 'JetBrains Mono', monospace; font-size: 27px; line-height: 40px; }
+
+
+  </style>
+  <div id="root" data-composition-id="s1_hook" data-width="1920" data-height="1080">
+    <div class="chapter">Gancho</div>
+    <div class="headline">¿Qué lee la pantalla</div>
+    <div class="sub">cuando no hay red?</div>
+    
+    <div id="s1-rule" class="clip " data-start="4.00" data-duration="16.00" style="left:200px;top:312px;width:1080px;height:4px;" ><div id="s1-rule-in" class="in"><div class="rule" style="width:1080px"></div></div></div>
+    <div id="s1-path" class="clip " data-start="4.40" data-duration="15.60" style="left:200px;top:340px;width:1000px;height:44px;" ><div id="s1-path-in" class="in"><div class="tagline">HTTPS → DTO → <span class="ac">Room</span> → Flow → UI</div></div></div>
+    <div id="s1-ficha" class="clip " data-start="0.00" data-duration="20.00" style="left:1180px;top:420px;width:440px;height:280px;" ><div id="s1-ficha-in" class="in"><div class="ficha-wrap"><div class="ficha-paper"><span class="ficha-tab">Notice · notice_1</span><div class="ficha-row"><b>text</b> Texto de aviso</div><div class="ficha-row"><b>createdAt</b> 2025-01-01T10:00:00Z</div><div class="ficha-row"><b>email</b> user@test.com</div></div></div></div></div>
+    <div id="s1-q" class="clip " data-start="1.20" data-duration="18.80" style="left:200px;top:400px;width:900px;height:300px;" ><div id="s1-q-in" class="in"><div class="bigword">¿Qué lee<br>la pantalla<br><span class="ac">sin red?</span></div></div></div>
+    <div id="s1-note" class="clip " data-start="9.00" data-duration="11.00" style="left:200px;top:840px;width:900px;height:40px;" ><div id="s1-note-in" class="in"><div class="tagline">Un aviso real del repo · <span class="bl">13 @Test</span></div></div></div>
+    <div id="s1-out" class="clip " data-start="17.20" data-duration="2.80" style="left:1180px;top:420px;width:440px;height:280px;" ><div id="s1-out-in" class="in"><div class="ficha-wrap"><div class="ficha-paper"><span class="ficha-tab">Notice</span><div class="ficha-row">Texto de aviso</div></div></div></div></div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s1-rule-in", {scaleX:0}, {scaleX:1,duration:0.4,ease:"power2.out",transformOrigin:"left center"}, 4.00);
+      tl.fromTo("#s1-path-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 4.40);
+      tl.fromTo("#s1-ficha-in", {opacity:0,y:-80,scale:0.9}, {opacity:1,y:0,scale:1,duration:0.55,ease:"expo.out"}, 0.00);
+      tl.fromTo("#s1-q-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 1.20);
+      tl.fromTo("#s1-note-in", {opacity:0,filter:"blur(8px)"}, {opacity:1,filter:"blur(0px)",duration:0.16,ease:"power4.out"}, 9.00);
+      tl.fromTo("#s1-out-in", {opacity:1,x:0}, {opacity:0,x:320,duration:0.5,ease:"power3.in"}, 17.20);
+    window.__timelines["s1_hook"] = tl;
+    tl.seek(0);
+  </script>
+</template>
